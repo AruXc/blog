@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Zero to Hero`,
-    author: `Aru`,
+    author: `AruXc`,
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
