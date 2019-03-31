@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import '../assets/main.css'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -12,7 +13,8 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteAuthor = this.props.data.site.siteMetadata.author
     const { previous, next } = this.props.pageContext
-    const isDraft = next? next.frontmatter.draft: null
+    const nextIsDraft = next? next.frontmatter.draft: null
+    const previousIsDraft = previous? previous.frontmatter.draft: null
     return (
       <Layout location={this.props.location} title={siteTitle} author={siteAuthor}>
         <SEO
@@ -30,7 +32,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div dangerouslySetInnerHTML={{ __html: post.html }} ></div>
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -48,14 +50,14 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           <li>
-            {previous && (
+            {previous && !previousIsDraft && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
-            {next && !isDraft && (
+            {next && !nextIsDraft && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
               </Link>

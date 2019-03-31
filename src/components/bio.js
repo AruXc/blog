@@ -26,7 +26,7 @@ function Bio() {
           >
             <p>記錄平常project或者是學習上遇到的問題。
               <br/>
-            如有錯誤，歡迎討論、指正。<a href = "mailto:aruxc6030@gmail.com?subject=Note blog">aruxc6030@gmail.com</a>
+            如有錯誤，請不吝指教。<a href = "mailto:aruxc6030@gmail.com?subject=Note blog">aruxc6030@gmail.com</a>
             </p>
           </div>
         )
