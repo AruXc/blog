@@ -70,16 +70,24 @@ Vue.component('example', {
 await this.nextTick()
 ```
 
-簡直完美的解法!如同官方的定義所說在下次 DOM 更新循環結束之後執行 callback，但我沒有要執行 callback 我只是要利用 nextTick 來等待任務完成。
+簡直完美的解法!如同官方的定義所說在下次 DOM 更新循環結束之後執行 callback，但我沒有要執行 callback 且如果是一般的寫法像這樣: 
 
 ```javascript
-  ...
-  this.$store.commit('START_VALIDATE')
+this.nextTick(function() {
+  return ...
+})
+```
 
-  await this.nextTick()
+promise return 出來的還是 promise 也因為是異步的關係並不會等我執行完，我只是要利用 nextTick 來等待任務完成。
 
-  return this.$store.state.invalid
-  ...
+```javascript
+...
+this.$store.commit('START_VALIDATE')
+
+await this.nextTick()
+
+return this.$store.state.invalid
+...
 ```
 
 這樣就會順利的等到子 component 驗證完才 return 結果，當然也要注意要使用 ES6 的 await 這個 function 前記得要加上 async 哦! 
